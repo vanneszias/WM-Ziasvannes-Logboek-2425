@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 const InputApi: React.FC = () => {
     const [inputValue, setInputValue] = useState('');
-    const router = useRouter();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
+        setInputValue(e.target.value); // Update the input value
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (inputValue.trim()) {
-            router.push(`/api/tests/${inputValue}`);
-        }
+        fetch(`/api/tests/${inputValue}`)
+            .then((res) => res.json())
+            .then((data) => {
+                const outputDiv = document.getElementById('api-output');
+                if (outputDiv) {
+                    // Display the API output in the output div
+                    outputDiv.innerHTML = JSON.stringify(data);
+                }
+            })
+            .catch((err) => console.error(err));
+        setInputValue(''); // Reset the input value
     };
 
     return (
+        // Input form for the API
         <form onSubmit={handleSubmit} className='flex justify-between'>
             <input
                 className='p-2 mr-5 rounded-xl'
