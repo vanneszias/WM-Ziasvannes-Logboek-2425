@@ -7,18 +7,19 @@ const InputApi: React.FC = () => {
         setInputValue(e.target.value); // Update the input value
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        fetch(`/api/tests/${inputValue}`)
-            .then((res) => res.json())
-            .then((data) => {
-                const outputDiv = document.getElementById('api-output');
-                if (outputDiv) {
-                    // Display the API output in the output div
-                    outputDiv.innerHTML = JSON.stringify(data);
-                }
-            })
-            .catch((err) => console.error(err));
+        await fetch("/api/id", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: inputValue }),
+        });
+        const outputDiv = document.getElementById('api-output');
+        if (outputDiv) {
+            outputDiv.innerText = `Send POST req with value: ${inputValue}`;
+        }
         setInputValue(''); // Reset the input value
     };
 

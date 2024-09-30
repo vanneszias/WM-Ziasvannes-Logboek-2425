@@ -1,5 +1,7 @@
 'use client';
+import AddBook from './components/addBook';
 import InputApi from './components/input-api';
+import BooksList from './components/bookList';
 
 export default function Home() {
   return (
@@ -8,12 +10,16 @@ export default function Home() {
         <h1 className="text-center p-4 text-slate-800">
           Opdracht 1 - API interface
         </h1>
-        <a href="/api/" className="text-slate-600 hover:text-slate-800">
+        <a href="/api/hello" className="text-slate-600 hover:text-slate-800">
           Static API
         </a>
         <InputApi />
         <div className="bg-white p-4 rounded shadow-md" id='api-output'>
           {/* API output will be displayed here */}
+        </div>
+        <AddBook />
+        <div className="bg-white p-4 rounded shadow-md" id='add-book-output'>
+          <BooksList />
         </div>
       </div>
     </div>
