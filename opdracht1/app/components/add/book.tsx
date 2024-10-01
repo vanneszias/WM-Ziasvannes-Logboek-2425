@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 
 const AddBook: React.FC = () => {
-  const [title, setTitle] = useState("");
-  const [code, setCode] = useState("");
-  const [author, setAuthor] = useState("");
-  const [genre, setGenre] = useState("");
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  let title = "";
+  let code = "";
+  let author = "";
+  let genre = "";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,50 +40,81 @@ const AddBook: React.FC = () => {
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
+  const BookForm: React.FC = () => (
+    <form
+      onSubmit={handleSubmit}
+      className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50"
+      onClick={toggleFormVisibility}
+      id="bookForm"
+    >
+      <div
+        className="bg-white p-6 rounded shadow-md"
+        onClick={(e) => e.stopPropagation()} // Prevent the form from closing when clicked inside
+      >
+        <div>
+          <input
+            type="text"
+            id="title"
+            placeholder="Enter book title"
+            onChange={(e) => {
+              title = e.target.value;
+            }}
+            required
+            className="mb-2 p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            id="code"
+            placeholder="Enter book code"
+            onChange={(e) => {
+              code = e.target.value;
+            }}
+            required
+            className="mb-2 p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            id="author"
+            placeholder="Enter author name"
+            onChange={(e) => {
+              author = e.target.value;
+            }}
+            required
+            className="mb-2 p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            id="genre"
+            placeholder="Enter genre name"
+            onChange={(e) => {
+              genre = e.target.value;
+            }}
+            required
+            className="mb-2 p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="flex justify-center">
+          <button type="submit" className="bg-slate-900 text-white p-2 rounded">
+            Add Book
+          </button>
+        </div>
       </div>
-      <div>
-        <label htmlFor="code">Code:</label>
-        <input
-          type="text"
-          id="code"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="author">Author:</label>
-        <input
-          type="text"
-          id="author"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="genre">Genre:</label>
-        <input
-          type="text"
-          id="genre"
-          value={genre}
-          onChange={(e) => setGenre(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit">Add Book</button>
     </form>
+  );
+
+  return (
+    <div>
+      <button onClick={toggleFormVisibility}>
+        {isFormVisible ? "Hide" : "Add"} Book
+      </button>
+      {isFormVisible && <BookForm />}
+    </div>
   );
 };
 

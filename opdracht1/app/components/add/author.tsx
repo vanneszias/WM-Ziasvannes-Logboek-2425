@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 
 const AddAuthor: React.FC = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [birthYear, setBirthYear] = useState<number | "">("");
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
+
+  let firstName = "";
+  let lastName = "";
+  let birthYear = "";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const newAuthor = { firstName, lastName, birthYear: Number(birthYear) };
     try {
       const response = await fetch("/api/create/author", {
@@ -28,42 +35,62 @@ const AddAuthor: React.FC = () => {
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="firstName">First Name:</label>
-        <input
-          type="text"
-          id="firstName"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
+  const AuthorForm: React.FC = () => (
+    <form
+      onSubmit={handleSubmit}
+      className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50"
+      onClick={toggleFormVisibility}
+    >
+      <div
+        className="bg-white p-6 rounded shadow-md"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div>
+          <input
+            type="text"
+            id="firstName"
+            placeholder="Enter first name"
+            onChange={(e) => (firstName = e.target.value)}
+            required
+            className="mb-2 p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            id="lastName"
+            placeholder="Enter last name"
+            onChange={(e) => (lastName = e.target.value)}
+            required
+            className="mb-2 p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div>
+          <input
+            type="number"
+            id="birthYear"
+            placeholder="Enter birth year"
+            onChange={(e) => (birthYear = e.target.value)}
+            required
+            className="mb-2 p-2 border border-gray-300 rounded"
+          />
+        </div>
+        <div className="flex justify-center">
+          <button type="submit" className="bg-slate-900 text-white p-2 rounded">
+            Add Author
+          </button>
+        </div>
       </div>
-      <div>
-        <label htmlFor="lastName">Last Name:</label>
-        <input
-          type="text"
-          id="lastName"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="birthYear">Birth Year:</label>
-        <input
-          type="number"
-          id="birthYear"
-          value={birthYear}
-          onChange={(e) =>
-            setBirthYear(e.target.value ? Number(e.target.value) : "")
-          }
-          required
-        />
-      </div>
-      <button type="submit">Add Author</button>
     </form>
+  );
+
+  return (
+    <div>
+      <button onClick={toggleFormVisibility}>
+        {isFormVisible ? "Hide" : "Add"} Author
+      </button>
+      {isFormVisible && <AuthorForm />}
+    </div>
   );
 };
 
