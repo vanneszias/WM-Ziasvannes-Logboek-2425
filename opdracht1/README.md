@@ -1,5 +1,23 @@
 # WM Opdracht 1
-Opgave
+
+## ToDo:
+
+- When adding a book link the author and genre to existing ones
+- Improve the list of books
+  - When clicking on a book be able to change or remove it
+  - See the name of genre/author instead of its ID
+
+## Technieken die ik gebruik
+
+- [NEXT.js](https://nextjs.org/docs) - backend
+- [Prisma](https://www.prisma.io/docs) - database management
+- [PostgrSQL](https://www.postgresql.org/docs/) - database platform
+- [React](https://react.dev/learn) - frontend components
+- [TailwindCSS](https://tailwindcss.com/docs/) - styling components
+- [Vercel](https://vercel.com/docs) - hosting
+
+## Opgave
+
 Je maakt een RESTful API en een eenvoudige html/js/[css] toepassing die er gebruik van maakt.
 Je mag daarvoor zeker uitgaan van de API die we in de les hebben gebruikt, maar dat is niet
 verplicht.
@@ -10,8 +28,8 @@ Lijsten met boeken per auteur moet je kunnen tonen.
 
 Een lijst met auteurs moet je kunnen tonen. Bij voorkeur kan je ook op een auteur doorklikken om de details van die auteur en de lijst met de door die auteur geschreven boeken te zien.
 
-* Een auteur heeft een voornaam, familienaam en geboortejaar.
-* Een boek heeft een titel, code (ISBN-code) en een omschrijving waarin het boek iets meer uitgebreid voorgesteld wordt (bv 1 of 2 alinea's).
+- Een auteur heeft een voornaam, familienaam en geboortejaar.
+- Een boek heeft een titel, code (ISBN-code) en een omschrijving waarin het boek iets meer uitgebreid voorgesteld wordt (bv 1 of 2 alinea's).
 
 Voorbeelden van boekengenres vind je op https://www.booksinbelgium.be/nl/genres-boeken
 
@@ -19,7 +37,6 @@ Voeg zelf een paar auteurs en boeken toe.
 Zorg dat elk boek ook een auteur heeft.
 Zorg er voor dat er minstens 1 auteur is die meerdere boeken heeft geschreven.
 Zorg aub voor realistische gegevens.
-
 
 De gegevens moet je ophalen via fetch (async/await, promises, ... dat is je eigen keuze).
 Je JS spreekt dus de geschikte PHP endpoints aan en verwerkt de response die je krijgt. De PHP scripts geven data terug in de vorm van JSON.
@@ -31,17 +48,8 @@ Je wilt dat bestand niet op Github zetten. (https://git-scm.com/docs/gitignore)
 
 Cesuur
 De cesuur is waar jouw oplossing minstens aan moet voldoen om een 10/20 te behalen voor deze opdracht.
-    Je front-end HTML pagina kan dmv fetch correct communiceren met je API.
-    Jouw API en jouw front-end oplossing staan beiden online.
-    Je CRUD operaties werken (Create, Retrieve, Update en Delete)
-    Je kan je response (zinvol) weergeven in je HTML pagina
-    Je toepassing is gebruiksvriendelijk
-
-# Technieken die ik gebruik
-
-- NEXT.js --> backend
-- Prisma --> db
-- React --> frontend
-- TailwindCSS --> CSS
-
-# ToDO:
+Je front-end HTML pagina kan dmv fetch correct communiceren met je API.
+Jouw API en jouw front-end oplossing staan beiden online.
+Je CRUD operaties werken (Create, Retrieve, Update en Delete)
+Je kan je response (zinvol) weergeven in je HTML pagina
+Je toepassing is gebruiksvriendelijk
