@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WM Opdracht 1
+Opgave
+Je maakt een RESTful API en een eenvoudige html/js/[css] toepassing die er gebruik van maakt.
+Je mag daarvoor zeker uitgaan van de API die we in de les hebben gebruikt, maar dat is niet
+verplicht.
 
-## Getting Started
+Je toepassing zal boeken, auteurs en genres beheren beheren. Je zal dus boeken, auteurs en genres kunnen aanmaken / wijzigen en eventueel verwijderen. Boeken kan je ook aan een genre toewijzen of er weer uit verwijderen.
 
-First, run the development server:
+Lijsten met boeken per auteur moet je kunnen tonen.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Een lijst met auteurs moet je kunnen tonen. Bij voorkeur kan je ook op een auteur doorklikken om de details van die auteur en de lijst met de door die auteur geschreven boeken te zien.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* Een auteur heeft een voornaam, familienaam en geboortejaar.
+* Een boek heeft een titel, code (ISBN-code) en een omschrijving waarin het boek iets meer uitgebreid voorgesteld wordt (bv 1 of 2 alinea's).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Voorbeelden van boekengenres vind je op https://www.booksinbelgium.be/nl/genres-boeken
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Voeg zelf een paar auteurs en boeken toe.
+Zorg dat elk boek ook een auteur heeft.
+Zorg er voor dat er minstens 1 auteur is die meerdere boeken heeft geschreven.
+Zorg aub voor realistische gegevens.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+De gegevens moet je ophalen via fetch (async/await, promises, ... dat is je eigen keuze).
+Je JS spreekt dus de geschikte PHP endpoints aan en verwerkt de response die je krijgt. De PHP scripts geven data terug in de vorm van JSON.
+De nadruk ligt in deze oefening op het werken met PHP en html/JS. De nadruk ligt dus niet op de opmaak van de pagina's, dus als je onder tijdsdruk zit, laat je opmaak tot het laatste.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Tip
+Pas het .gitignore bestand aan voor je een commit doet met het bestand waarin je database-credentials staan.
+Je wilt dat bestand niet op Github zetten. (https://git-scm.com/docs/gitignore)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Cesuur
+De cesuur is waar jouw oplossing minstens aan moet voldoen om een 10/20 te behalen voor deze opdracht.
+    Je front-end HTML pagina kan dmv fetch correct communiceren met je API.
+    Jouw API en jouw front-end oplossing staan beiden online.
+    Je CRUD operaties werken (Create, Retrieve, Update en Delete)
+    Je kan je response (zinvol) weergeven in je HTML pagina
+    Je toepassing is gebruiksvriendelijk
 
-## Deploy on Vercel
+# Technieken die ik gebruik
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- NEXT.js --> backend
+- Prisma --> db
+- React --> frontend
+- TailwindCSS --> CSS
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# ToDO:
