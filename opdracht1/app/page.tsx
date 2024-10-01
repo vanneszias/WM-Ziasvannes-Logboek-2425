@@ -1,7 +1,15 @@
 'use client';
-import AddBook from './components/addBook';
+import Link from 'next/link';
+
 import InputApi from './components/input-api';
-import BooksList from './components/bookList';
+
+import AddBook from './components/add/book';
+import AddAuthor from './components/add/author';
+import AddGenre from './components/add/genre';
+
+import BooksList from './components/list/book';
+import AuthorsList from './components/list/author';
+import GenresList from './components/list/genre';
 
 export default function Home() {
   return (
@@ -10,16 +18,24 @@ export default function Home() {
         <h1 className="text-center p-4 text-slate-800">
           Opdracht 1 - API interface
         </h1>
-        <a href="/api/hello" className="text-slate-600 hover:text-slate-800">
+        <Link href="/api/hello" className="text-slate-600 hover:text-slate-800">
           Static API
-        </a>
+        </Link>
         <InputApi />
-        <div className="bg-white p-4 rounded shadow-md" id='api-output'>
+        <div className="bg-white p-4 rounded shadow-md" id="api-output">
           {/* API output will be displayed here */}
         </div>
         <AddBook />
-        <div className="bg-white p-4 rounded shadow-md" id='add-book-output'>
+        <AddAuthor />
+        <AddGenre />
+        <div className="bg-white p-4 rounded shadow-md" id="add-book-output">
           <BooksList />
+        </div>
+        <div className="bg-white p-4 rounded shadow-md" id="author-list">
+          <AuthorsList />
+        </div>
+        <div className="bg-white p-4 rounded shadow-md" id="genre-list">
+          <GenresList />
         </div>
       </div>
     </div>

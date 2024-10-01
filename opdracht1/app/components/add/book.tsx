@@ -15,7 +15,7 @@ const AddBook: React.FC = () => {
             genre 
         };
         try {
-            const response = await fetch('/api/createBook', {
+            const response = await fetch('/api/create/book', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

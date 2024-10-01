@@ -9,10 +9,12 @@
 * Research and implement Dynamic App Router: 1u
 * Research and implement fetch api on same page: 1u
 
-## Week 2 - 3.5u
+## Week 2 - 5.5u
 * Use pages router for api: 1u
 * Debugging router for api: 0.5u
 * Start implementing create book: 1u
 * Start implementing list books: 1u
+* Start implementing create and list of authors and genres: 1.5u
+* Restructured folder structure: 0.5u
 
-## Totale duur : 13 uur
+## Totale duur : 15 uur

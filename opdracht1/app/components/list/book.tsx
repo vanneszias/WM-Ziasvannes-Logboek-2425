@@ -14,10 +14,9 @@ const BooksList: React.FC = () => {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await fetch('/api/listBooks');
+                const response = await fetch('/api/list/books');
                 const data = await response.json();
                 setBooks(data);
-                console.log(data);
             } catch (error) {
                 console.error('Error fetching books:', error);
             } finally {
