@@ -17,6 +17,7 @@ const GenreList: React.FC = () => {
                 setGenres(data);
             } catch (error) {
                 console.error('Error fetching genres:', error);
+                setGenres([]);
             } finally {
                 setLoading(false);
             }

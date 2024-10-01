@@ -19,6 +19,7 @@ const BooksList: React.FC = () => {
                 setBooks(data);
             } catch (error) {
                 console.error('Error fetching books:', error);
+                setBooks([]);
             } finally {
                 setLoading(false);
             }

@@ -19,6 +19,7 @@ const AuthorsList: React.FC = () => {
                 setAuthors(data);
             } catch (error) {
                 console.error('Error fetching authors:', error);
+                setAuthors([]);
             } finally {
                 setLoading(false);
             }
