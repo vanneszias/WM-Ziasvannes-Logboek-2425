@@ -10,7 +10,7 @@ export default async function handler(
   try {
     const genre = await prisma.genre.findMany();
     if (genre.length === 0) {
-      res.status(204).json({ error: "Genres not found" });
+      res.status(204).end();
       return;
     }
     res.status(200).json(genre);

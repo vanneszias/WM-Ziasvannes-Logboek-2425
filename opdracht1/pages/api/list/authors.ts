@@ -10,7 +10,7 @@ export default async function handler(
   try {
     const author = await prisma.author.findMany();
     if (author.length === 0) {
-      res.status(204).json({ error: "Authors not found" });
+      res.status(204).end();
       return;
     }
     res.status(200).json(author);

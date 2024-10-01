@@ -10,7 +10,7 @@ export default async function handler(
   try {
     const books = await prisma.book.findMany();
     if (books.length === 0) {
-      res.status(204).json({ error: "Books not found" });
+      res.status(204).end();
       return;
     }
     res.status(200).json(books);
