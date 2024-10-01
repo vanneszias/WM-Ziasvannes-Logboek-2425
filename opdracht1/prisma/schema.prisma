@@ -11,23 +11,25 @@ datasource db {
 }
 
 model Book {
-  id        Int      @id @default(autoincrement())
-  title     String
-  code      String
-  author    Author   @relation(fields: [authorId], references: [id])
-  authorId  Int
-  genre     Genre    @relation(fields: [genreId], references: [id])
-  genreId   Int
+  id       Int    @id @default(autoincrement())
+  title    String
+  code     String
+  author   Author @relation(fields: [authorId], references: [id])
+  authorId Int
+  genre    Genre  @relation(fields: [genreId], references: [id])
+  genreId  Int
 }
+
 model Author {
-  id          Int     @id @default(autoincrement())
-  firstName   String
-  lastName    String
-  birthYear   Int
-  books       Book[]
+  id        Int    @id @default(autoincrement())
+  firstName String
+  lastName  String
+  birthYear Int
+  books     Book[]
 }
+
 model Genre {
-  id          Int     @id @default(autoincrement())
-  name        String
-  books       Book[]
+  id    Int    @id @default(autoincrement())
+  name  String
+  books Book[]
 }

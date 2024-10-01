@@ -1,15 +1,15 @@
-'use client';
-import Link from 'next/link';
+"use client";
+import Link from "next/link";
 
-import InputApi from './components/input-api';
+import InputApi from "./components/input-api";
 
-import AddBook from './components/add/book';
-import AddAuthor from './components/add/author';
-import AddGenre from './components/add/genre';
+import AddBook from "./components/add/book";
+import AddAuthor from "./components/add/author";
+import AddGenre from "./components/add/genre";
 
-import BooksList from './components/list/book';
-import AuthorsList from './components/list/author';
-import GenresList from './components/list/genre';
+import BooksList from "./components/list/book";
+import AuthorsList from "./components/list/author";
+import GenresList from "./components/list/genre";
 
 export default function Home() {
   return (
