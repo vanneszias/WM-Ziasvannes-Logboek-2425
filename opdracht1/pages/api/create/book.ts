@@ -9,25 +9,32 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     const { title, code, author, genre } = req.body;
+
     try {
-      const newAuthor = await prisma.author.create({
-        data: {
-          firstName: author,
-          lastName: "Doe",
-          birthYear: 2000,
+      // Parse author and genre as integers
+      const authorId = parseInt(author);
+      const genreId = parseInt(genre);
+
+      // Connect author to existing author
+      const existingAuthor = await prisma.author.findUniqueOrThrow({
+        where: {
+          id: authorId,
         },
       });
-      const newGenre = await prisma.genre.create({
-        data: {
-          name: genre,
+      // Connect genre to existing genre
+      const existingGenre = await prisma.genre.findUniqueOrThrow({
+        where: {
+          id: genreId,
         },
       });
+      console.log(existingAuthor, existingGenre);
+      // Create book with existing author and genre
       const newBook = await prisma.book.create({
         data: {
           title,
           code,
-          authorId: newAuthor.id,
-          genreId: newGenre.id,
+          authorId: existingAuthor.id,
+          genreId: existingGenre.id,
         },
       });
       res.status(201).json(newBook);

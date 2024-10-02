@@ -2,10 +2,8 @@
 
 ## ToDo:
 
-- When adding a book link the author and genre to existing ones
 - Improve the list of books
   - When clicking on a book be able to change or remove it
-  - See the name of genre/author instead of its ID
 
 ## Technieken die ik gebruik
 

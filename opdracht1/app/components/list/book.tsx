@@ -76,6 +76,7 @@ const BooksList: React.FC = () => {
       {books.length > 0 ? (
         books.map((book) => (
           <div key={book.id} className="flex justify-between">
+            <p>{book.id}</p>
             <h3 className="text-xl">{book.title}</h3>
             <p>
               {author.find((a) => a.id === book.authorId)?.firstName}{" "}

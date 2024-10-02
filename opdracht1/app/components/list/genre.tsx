@@ -36,6 +36,7 @@ const GenreList: React.FC = () => {
       {genres.length > 0 ? (
         genres.map((genre) => (
           <div key={genre.id} className="flex justify-between">
+            <p>{genre.id}</p>
             <h3 className="text-xl">{genre.name}</h3>
           </div>
         ))

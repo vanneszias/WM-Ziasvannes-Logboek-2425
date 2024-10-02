@@ -1,7 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+interface Author {
+  id: number;
+  firstName: string;
+  lastName: number;
+  birthYear: number;
+}
+
+interface Genre {
+  id: number;
+  name: string;
+}
 
 const AddBook: React.FC = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
+  const [authors, setAuthors] = useState<Author[]>([]);
+  const [genres, setGenres] = useState<Genre[]>([]);
+
+  useEffect(() => {
+    const fetchAuthors = async () => {
+      try {
+        const response = await fetch("/api/list/authors");
+        const data = await response.json();
+        setAuthors(data);
+      } catch (error) {
+        console.error("Error fetching authors:", error);
+        setAuthors([]);
+      }
+    };
+
+    const fetchGenres = async () => {
+      try {
+        const response = await fetch("/api/list/genres");
+        const data = await response.json();
+        setGenres(data);
+      } catch (error) {
+        console.error("Error fetching genres:", error);
+        setGenres([]);
+      }
+    };
+
+    fetchAuthors();
+    fetchGenres();
+  }, []);
 
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
@@ -76,28 +117,40 @@ const AddBook: React.FC = () => {
           />
         </div>
         <div>
-          <input
-            type="text"
+          <select
             id="author"
-            placeholder="Enter author name"
             onChange={(e) => {
               author = e.target.value;
+              console.log(author);
             }}
             required
-            className="mb-2 p-2 border border-gray-300 rounded"
-          />
+            className="mb-2 p-2 border border-gray-300 rounded w-full"
+          >
+            <option value="">Select an author</option>
+            {authors.map((author: Author) => (
+              <option key={author.id} value={author.id}>
+                {author.firstName} {author.lastName}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
-          <input
-            type="text"
+          <select
             id="genre"
-            placeholder="Enter genre name"
             onChange={(e) => {
               genre = e.target.value;
+              console.log(genre);
             }}
             required
-            className="mb-2 p-2 border border-gray-300 rounded"
-          />
+            className="mb-2 p-2 border border-gray-300 rounded w-full"
+          >
+            <option value="">Select a genre</option>
+            {genres.map((genre: Genre) => (
+              <option key={genre.id} value={genre.id}>
+                {genre.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="flex justify-center">
           <button type="submit" className="bg-slate-900 text-white p-2 rounded">
