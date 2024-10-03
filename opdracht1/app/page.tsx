@@ -21,13 +21,13 @@ export default function Home() {
             <AddGenre />
           </div>
         </div>
-        <div className="bg-white p-4 rounded shadow-md" id="add-book-output">
+        <div className="bg-white p-4 rounded shadow-xl" id="add-book-output">
           <BooksList />
         </div>
-        <div className="bg-white p-4 rounded shadow-md" id="author-list">
+        <div className="bg-white p-4 rounded shadow-xl" id="author-list">
           <AuthorsList />
         </div>
-        <div className="bg-white p-4 rounded shadow-md" id="genre-list">
+        <div className="bg-white p-4 rounded shadow-xl" id="genre-list">
           <GenresList />
         </div>
       </div>

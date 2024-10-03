@@ -35,10 +35,14 @@ const AuthorsList: React.FC = () => {
   return (
     // First check if there are authors to display
     // If there are authors, map over the authors and display each author
-    <div>
+    <div className="mt-3">
       {author.length > 0 ? (
         author.map((author) => (
-          <div key={author.id} className="flex justify-between">
+          <div
+            key={author.id}
+            className="flex justify-between space-x-5 border border-gray-300 p-2 hover:bg-slate-100 cursor-pointer"
+            onClick={() => console.log(author)}
+          >
             <p>{author.id}</p>
             <p>{author.firstName}</p>
             <p>{author.lastName}</p>
@@ -61,7 +65,10 @@ const BtnShowAuthors = () => {
 
   return (
     <>
-      <button onClick={toggleShowAuthors}>
+      <button
+        onClick={toggleShowAuthors}
+        className="text-center w-full hover:text-slate-500"
+      >
         {showAuthors ? "Hide authors" : "Show authors"}
       </button>
       {showAuthors && <AuthorsList />}

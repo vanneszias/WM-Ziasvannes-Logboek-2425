@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import BookPopup from "../details/book";
 
 interface Book {
   id: number;
   title: string;
   authorId: number;
   genreId: number;
+  popup?: boolean;
 }
+
 interface Author {
   id: number;
   firstName: string;
@@ -68,6 +71,7 @@ const BooksList: React.FC = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+
   return (
     // First check if there are books to display
     // If there are books, map over the books and display each book
@@ -77,7 +81,11 @@ const BooksList: React.FC = () => {
         books.map((book: Book) => (
           <div
             key={book.id}
-            className="flex justify-between space-x-5 border border-gray-300 p-2"
+            className="flex justify-between space-x-5 border border-gray-300 p-2 hover:bg-slate-100 cursor-pointer"
+            onClick={() => {
+              book.popup = !book.popup;
+              setBooks([...books]); // This is a workaround to force a rerender
+            }}
           >
             <p>{book.id}</p>
             <p>{book.title}</p>
@@ -87,6 +95,7 @@ const BooksList: React.FC = () => {
               {author.find((a) => a.id === book.authorId)?.lastName}
             </p>
             <p>{genre.find((g) => g.id === book.genreId)?.name}</p>
+            {book.popup && <BookPopup book={book} />}
           </div>
         ))
       ) : (
