@@ -40,7 +40,7 @@ const AuthorsList: React.FC = () => {
         author.map((author) => (
           <div key={author.id} className="flex justify-between">
             <p>{author.id}</p>
-            <h3 className="text-xl">{author.firstName}</h3>
+            <p>{author.firstName}</p>
             <p>{author.lastName}</p>
             <p>{author.birthYear}</p>
           </div>
@@ -52,4 +52,21 @@ const AuthorsList: React.FC = () => {
   );
 };
 
-export default AuthorsList;
+const BtnShowAuthors = () => {
+  const [showAuthors, setShowAuthors] = useState(false);
+
+  const toggleShowAuthors = () => {
+    setShowAuthors(!showAuthors);
+  };
+
+  return (
+    <>
+      <button onClick={toggleShowAuthors}>
+        {showAuthors ? "Hide authors" : "Show authors"}
+      </button>
+      {showAuthors && <AuthorsList />}
+    </>
+  );
+};
+
+export default BtnShowAuthors;

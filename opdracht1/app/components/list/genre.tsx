@@ -37,7 +37,7 @@ const GenreList: React.FC = () => {
         genres.map((genre) => (
           <div key={genre.id} className="flex justify-between">
             <p>{genre.id}</p>
-            <h3 className="text-xl">{genre.name}</h3>
+            <p>{genre.name}</p>
           </div>
         ))
       ) : (
@@ -47,4 +47,21 @@ const GenreList: React.FC = () => {
   );
 };
 
-export default GenreList;
+const BtnShowGenres = () => {
+  const [showGenres, setShowGenres] = useState(false);
+
+  const toggleShowGenres = () => {
+    setShowGenres(!showGenres);
+  };
+
+  return (
+    <>
+      <button onClick={toggleShowGenres}>
+        {showGenres ? "Hide genres" : "Show genres"}
+      </button>
+      {showGenres && <GenreList />}
+    </>
+  );
+};
+
+export default BtnShowGenres;

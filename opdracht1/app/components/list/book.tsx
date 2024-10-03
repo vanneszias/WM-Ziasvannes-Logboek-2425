@@ -74,12 +74,16 @@ const BooksList: React.FC = () => {
     // Use the author and genre id to find the author and genre in the author and genre tables
     <div>
       {books.length > 0 ? (
-        books.map((book) => (
-          <div key={book.id} className="flex justify-between">
+        books.map((book: Book) => (
+          <div
+            key={book.id}
+            className="flex justify-between space-x-5 border border-gray-300 p-2"
+          >
             <p>{book.id}</p>
-            <h3 className="text-xl">{book.title}</h3>
+            <p>{book.title}</p>
             <p>
-              {author.find((a) => a.id === book.authorId)?.firstName}{" "}
+              {author.find((a) => a.id === book.authorId)?.firstName.at(0)}
+              {". "}
               {author.find((a) => a.id === book.authorId)?.lastName}
             </p>
             <p>{genre.find((g) => g.id === book.genreId)?.name}</p>

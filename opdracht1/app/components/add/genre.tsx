@@ -63,7 +63,10 @@ const AddGenre: React.FC = () => {
 
   return (
     <div>
-      <button onClick={toggleFormVisibility}>
+      <button
+        onClick={toggleFormVisibility}
+        className="bg-slate-600 p-3 mx-1 rounded text-slate-100 hover:bg-slate-800"
+      >
         {isFormVisible ? "Hide" : "Add"} Genre
       </button>
       {isFormVisible && <GenreForm />}
