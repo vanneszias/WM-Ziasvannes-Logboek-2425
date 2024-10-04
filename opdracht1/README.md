@@ -3,16 +3,14 @@
 ## ToDo:
 
 - List of authors and genres
-  - Add functionality to delete an author
-  - Add functionality to edit an author
-  - Add functionality to delete a genre
-  - Add functionality to edit a genre
+  - Add functionality to delete and edit an author
+  - Add functionality to delete and edit a genre
 
 ## Technieken die ik gebruik
 
-- [NEXT.js](https://nextjs.org/docs) - backend
+- [NEXT.js](https://nextjs.org/docs) - react framework
 - [Prisma](https://www.prisma.io/docs) - database management
-- [PostgrSQL](https://www.postgresql.org/docs/) - database platform
+- [PostgreSQL](https://www.postgresql.org/docs/) - database platform
 - [React](https://react.dev/learn) - frontend components
 - [TailwindCSS](https://tailwindcss.com/docs/) - styling components
 - [Vercel](https://vercel.com/docs) - hosting
