@@ -84,6 +84,27 @@ const BookPopUp: React.FC<{ book: Book }> = ({ book }) => {
     }
   };
 
+  const deleteBook = async (book: Book) => {
+    try {
+      const response = await fetch("/api/delete/book", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(book.id),
+      });
+      if (response.ok) {
+        // Reload page to see the updated book
+        window.location.reload();
+      }
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     // Add the pop-up form to edit the book.
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
@@ -169,7 +190,9 @@ const BookPopUp: React.FC<{ book: Book }> = ({ book }) => {
               <button
                 type="button"
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => console.log("Delete", book)}
+                onClick={() => {
+                  deleteBook(book);
+                }}
               >
                 Delete
               </button>

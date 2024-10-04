@@ -2,8 +2,6 @@
 
 ## ToDo:
 
-- Improve the list of books
-  - Add functionality to delete a book
 - List of authors and genres
   - Add functionality to delete an author
   - Add functionality to edit an author

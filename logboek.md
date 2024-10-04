@@ -9,7 +9,7 @@
 - Research and implement Dynamic App Router: 1u
 - Research and implement fetch api on same page: 1u
 
-## Week 2 - 15.625u
+## Week 2 - 16.125u
 
 - Use pages router for api: 1u
 - Debugging router for api: 0.5u
@@ -28,5 +28,6 @@
 - Fixed the popup for the book details: 0.5u
 - Added a list of authors and genres when changing a book: 1u
 - Added ability to change a book: 1u
+- Added ability to delete a book: 0.5u
 
-## Totale duur : 25.125 uur
+## Totale duur : 25.625 uur

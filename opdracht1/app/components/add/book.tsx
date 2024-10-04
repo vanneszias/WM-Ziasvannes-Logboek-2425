@@ -121,7 +121,6 @@ const AddBook: React.FC = () => {
             id="author"
             onChange={(e) => {
               author = e.target.value;
-              console.log(author);
             }}
             required
             className="mb-2 p-2 border border-gray-300 rounded w-full"
@@ -139,7 +138,6 @@ const AddBook: React.FC = () => {
             id="genre"
             onChange={(e) => {
               genre = e.target.value;
-              console.log(genre);
             }}
             required
             className="mb-2 p-2 border border-gray-300 rounded w-full"
