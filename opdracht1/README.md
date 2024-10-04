@@ -2,9 +2,13 @@
 
 ## ToDo:
 
+- Stijl hompage
+  - Verschillende frames met boeken, auteurs, genres
 - List of authors and genres
   - Add functionality to delete and edit an author
   - Add functionality to delete and edit a genre
+  - Laat alle boeken door een auteur zien
+  - Laat alle boeken met een genre zien
 
 ## Technieken die ik gebruik
 
