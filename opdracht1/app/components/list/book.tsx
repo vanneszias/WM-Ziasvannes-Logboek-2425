@@ -4,6 +4,7 @@ import BookPopup from "../details/book";
 interface Book {
   id: number;
   title: string;
+  code: string;
   authorId: number;
   genreId: number;
   popup?: boolean;
