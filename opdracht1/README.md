@@ -3,9 +3,7 @@
 ## ToDo:
 
 - Improve the list of books
-  - Fix the popup that shows the book details
   - Add functionality to delete a book
-  - Add functionality to edit a book
 - List of authors and genres
   - Add functionality to delete an author
   - Add functionality to edit an author

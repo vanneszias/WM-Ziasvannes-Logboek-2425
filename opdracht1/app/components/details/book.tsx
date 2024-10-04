@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 interface Book {
   id: number;
   title: string;
+  code: string;
   authorId: number;
   genreId: number;
 }
@@ -21,13 +22,14 @@ interface Genre {
 
 const BookPopUp: React.FC<{ book: Book }> = ({ book }) => {
   const [title, setTitle] = useState<string>(book.title);
+  const [code, setCode] = useState<string>(book.code);
   const [authorId, setAuthorId] = useState<number>(book.authorId);
   const [genreId, setGenreId] = useState<number>(book.genreId);
 
   const [authors, setAuthors] = useState<Author[]>([]);
   const [genres, setGenres] = useState<Genre[]>([]);
 
-  let newBook: Book = { id: book.id, title, authorId, genreId };
+  let newBook: Book = { id: book.id, title, code, authorId, genreId };
 
   // Fetch authors and genres
   useEffect(() => {
@@ -57,12 +59,29 @@ const BookPopUp: React.FC<{ book: Book }> = ({ book }) => {
     fetchGenres();
   }, []);
 
-  const saveBook = (book?: Book) => {
+  const saveBook = async (book?: Book) => {
     if (!book) {
       console.error("No book to save");
       return;
     }
-    console.log("Save", book);
+    try {
+      const response = await fetch("/api/edit/book", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newBook),
+      });
+      if (response.ok) {
+        // Reload page to see the updated book
+        window.location.reload();
+      }
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -90,13 +109,28 @@ const BookPopUp: React.FC<{ book: Book }> = ({ book }) => {
             />
           </div>
           <div>
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="code"
+            >
+              ISBN-code
+            </label>
+            <input
+              className="shadow border rounded w-full py-2 px-3 mb-2 text-gray-700 leading-tight"
+              id="code"
+              type="text"
+              onChange={(e) => setCode(e.target.value)}
+              defaultValue={book.code}
+            />
+          </div>
+          <div>
             <select
               onChange={(e) => {
                 setAuthorId(Number(e.target.value));
               }}
+              value={authorId}
               className="shadow border rounded w-full py-2 px-3 my-2 leading-tight"
             >
-              <option value="">Select an author</option>
               {authors.map((author: Author) => (
                 <option key={author.id} value={author.id}>
                   {author.firstName} {author.lastName}
@@ -109,9 +143,9 @@ const BookPopUp: React.FC<{ book: Book }> = ({ book }) => {
               onChange={(e) => {
                 setGenreId(Number(e.target.value));
               }}
+              value={genreId}
               className="shadow border rounded w-full py-2 px-3 my-4 leading-tight"
             >
-              <option value="">Select a genre</option>
               {genres.map((genre: Genre) => (
                 <option key={genre.id} value={genre.id}>
                   {genre.name}
@@ -124,7 +158,7 @@ const BookPopUp: React.FC<{ book: Book }> = ({ book }) => {
               type="button"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => {
-                newBook = { id: book.id, title, authorId, genreId };
+                newBook = { id: book.id, title, code, authorId, genreId };
                 saveBook(newBook);
               }}
             >
