@@ -35,18 +35,23 @@ const AuthorsList: React.FC = () => {
   return (
     // First check if there are authors to display
     // If there are authors, map over the authors and display each author
-    <div className="mt-3">
+    <div>
       {author.length > 0 ? (
         author.map((author) => (
           <div
             key={author.id}
-            className="flex justify-between space-x-5 border border-gray-300 p-2 hover:bg-slate-100 cursor-pointer"
+            className="flex justify-between space-x-5 p-3 rounded-xl hover:bg-slate-100 cursor-pointer"
             onClick={() => console.log(author)}
           >
-            <p>{author.id}</p>
-            <p>{author.firstName}</p>
-            <p>{author.lastName}</p>
-            <p>{author.birthYear}</p>
+            <p className="w-1/3 text-left h-full self-center">
+              {author.firstName}
+            </p>
+            <p className="w-1/3 text-center h-full self-center">
+              {author.lastName}
+            </p>
+            <p className="w-1/3 text-right h-full self-center">
+              {author.birthYear}
+            </p>
           </div>
         ))
       ) : (
@@ -56,24 +61,4 @@ const AuthorsList: React.FC = () => {
   );
 };
 
-const BtnShowAuthors = () => {
-  const [showAuthors, setShowAuthors] = useState(false);
-
-  const toggleShowAuthors = () => {
-    setShowAuthors(!showAuthors);
-  };
-
-  return (
-    <>
-      <button
-        onClick={toggleShowAuthors}
-        className="text-center w-full hover:text-slate-500"
-      >
-        {showAuthors ? "Hide authors" : "Show authors"}
-      </button>
-      {showAuthors && <AuthorsList />}
-    </>
-  );
-};
-
-export default BtnShowAuthors;
+export default AuthorsList;

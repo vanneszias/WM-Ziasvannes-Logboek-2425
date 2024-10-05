@@ -88,7 +88,7 @@ const AddAuthor: React.FC = () => {
     <div>
       <button
         onClick={toggleFormVisibility}
-        className="bg-slate-600 p-3 mx-1 rounded text-slate-100 hover:bg-slate-800"
+        className="bg-slate-600 p-3 mx-1 w-full rounded text-slate-100 hover:bg-slate-800"
       >
         {isFormVisible ? "Hide" : "Add"} Author
       </button>

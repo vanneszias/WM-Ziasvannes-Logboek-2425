@@ -82,20 +82,21 @@ const BooksList: React.FC = () => {
         books.map((book: Book) => (
           <div
             key={book.id}
-            className="flex justify-between space-x-5 border border-gray-300 p-2 hover:bg-slate-100 cursor-pointer"
+            className="flex justify-between space-x-5 p-3 rounded-xl hover:bg-slate-100 cursor-pointer"
             onClick={() => {
               book.popup = !book.popup;
               setBooks([...books]); // This is a workaround to force a rerender
             }}
           >
-            <p>{book.id}</p>
-            <p>{book.title}</p>
-            <p>
+            <p className="w-1/3 text-left h-full self-center">{book.title}</p>
+            <p className="w-1/3 text-center h-full self-center">
               {author.find((a) => a.id === book.authorId)?.firstName.at(0)}
               {". "}
               {author.find((a) => a.id === book.authorId)?.lastName}
             </p>
-            <p>{genre.find((g) => g.id === book.genreId)?.name}</p>
+            <p className="w-1/3 text-right h-full self-center">
+              {genre.find((g) => g.id === book.genreId)?.name}
+            </p>
             {book.popup && <BookPopup book={book} />}
           </div>
         ))

@@ -32,16 +32,15 @@ const GenreList: React.FC = () => {
   return (
     // First check if there are genres to display
     // If there are genres, map over the genres and display each genre
-    <div className="mt-3">
+    <div>
       {genres.length > 0 ? (
         genres.map((genre) => (
           <div
             key={genre.id}
-            className="flex justify-between space-x-5 border border-gray-300 p-2 hover:bg-slate-100 cursor-pointer"
+            className="flex justify-between space-x-5 p-3 rounded-xl hover:bg-slate-100 cursor-pointer"
             onClick={() => console.log(genre)}
           >
-            <p>{genre.id}</p>
-            <p>{genre.name}</p>
+            <p className="w-full text-center">{genre.name}</p>
           </div>
         ))
       ) : (
@@ -51,24 +50,4 @@ const GenreList: React.FC = () => {
   );
 };
 
-const BtnShowGenres = () => {
-  const [showGenres, setShowGenres] = useState(false);
-
-  const toggleShowGenres = () => {
-    setShowGenres(!showGenres);
-  };
-
-  return (
-    <>
-      <button
-        onClick={toggleShowGenres}
-        className="text-center w-full hover:text-slate-500"
-      >
-        {showGenres ? "Hide genres" : "Show genres"}
-      </button>
-      {showGenres && <GenreList />}
-    </>
-  );
-};
-
-export default BtnShowGenres;
+export default GenreList;
