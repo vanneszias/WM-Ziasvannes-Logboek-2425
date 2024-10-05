@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
+import AuthorPopUp from "../details/author";
 
 interface Author {
   id: number;
   firstName: string;
-  lastName: number;
+  lastName: string;
   birthYear: number;
+  popup?: boolean;
 }
 
 const AuthorsList: React.FC = () => {
-  const [author, setAuthors] = useState<Author[]>([]);
+  const [authors, setAuthors] = useState<Author[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -36,12 +38,15 @@ const AuthorsList: React.FC = () => {
     // First check if there are authors to display
     // If there are authors, map over the authors and display each author
     <div>
-      {author.length > 0 ? (
-        author.map((author) => (
+      {authors.length > 0 ? (
+        authors.map((author: Author) => (
           <div
             key={author.id}
-            className="flex justify-between space-x-5 p-3 rounded-xl hover:bg-slate-100 cursor-pointer"
-            onClick={() => console.log(author)}
+            className="flex justify-between p-3 rounded-xl hover:bg-slate-100 cursor-pointer"
+            onClick={() => {
+              author.popup = !author.popup;
+              setAuthors([...authors]); // This is a workaround to force a rerender
+            }}
           >
             <p className="w-1/3 text-left h-full self-center">
               {author.firstName}
@@ -52,6 +57,7 @@ const AuthorsList: React.FC = () => {
             <p className="w-1/3 text-right h-full self-center">
               {author.birthYear}
             </p>
+            {author.popup && <AuthorPopUp author={author} />}
           </div>
         ))
       ) : (

@@ -174,7 +174,7 @@ const BookPopUp: React.FC<{ book: Book }> = ({ book }) => {
               ))}
             </select>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex justify-between">
             <button
               type="button"
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -185,18 +185,15 @@ const BookPopUp: React.FC<{ book: Book }> = ({ book }) => {
             >
               Save
             </button>
-
-            <div className="flex items-center justify-between">
-              <button
-                type="button"
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                onClick={() => {
-                  deleteBook(book);
-                }}
-              >
-                Delete
-              </button>
-            </div>
+            <button
+              type="button"
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              onClick={() => {
+                deleteBook(book);
+              }}
+            >
+              Delete
+            </button>
           </div>
         </form>
       </div>

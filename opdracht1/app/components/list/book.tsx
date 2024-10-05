@@ -82,7 +82,7 @@ const BooksList: React.FC = () => {
         books.map((book: Book) => (
           <div
             key={book.id}
-            className="flex justify-between space-x-5 p-3 rounded-xl hover:bg-slate-100 cursor-pointer"
+            className="flex justify-between p-3 rounded-xl hover:bg-slate-100 cursor-pointer"
             onClick={() => {
               book.popup = !book.popup;
               setBooks([...books]); // This is a workaround to force a rerender

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import GenrePopUp from "../details/genre";
 
 interface Genre {
   id: number;
   name: string;
+  popup?: boolean;
 }
 
 const GenreList: React.FC = () => {
@@ -37,10 +39,14 @@ const GenreList: React.FC = () => {
         genres.map((genre) => (
           <div
             key={genre.id}
-            className="flex justify-between space-x-5 p-3 rounded-xl hover:bg-slate-100 cursor-pointer"
-            onClick={() => console.log(genre)}
+            className="flex justify-between p-3 rounded-xl hover:bg-slate-100 cursor-pointer"
+            onClick={() => {
+              genre.popup = !genre.popup;
+              setGenres([...genres]); // This is a workaround to force a rerender
+            }}
           >
             <p className="w-full text-center">{genre.name}</p>
+            {genre.popup && <GenrePopUp genre={genre} />}
           </div>
         ))
       ) : (
