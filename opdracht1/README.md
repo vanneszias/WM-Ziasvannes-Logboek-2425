@@ -2,8 +2,7 @@
 
 ## ToDo:
 
-- Laat alle boeken door een auteur zien
-- Laat alle boeken met een genre zien
+- Testing and bugfixes
 
 ## Technieken die ik gebruik
 

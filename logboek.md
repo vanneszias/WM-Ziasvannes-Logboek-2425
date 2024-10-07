@@ -34,8 +34,9 @@
 - Added functionality to change and author and genre: 0.5u
 - Added functionality to delete an author and genre: 0.25u
 
-## Week 3 - 1u
+## Week 3 - 2u
 
 - Fixed an issue where the author and genre would not be properly deleted: 1u
+- Added ability to show all books with a certain author or genre: 1u
 
-## Totale duur : 28.5 uur
+## Totale duur : 29.5 uur

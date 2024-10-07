@@ -1,3 +1,4 @@
+import { Book } from "@prisma/client";
 import React from "react";
 import { useState } from "react";
 
@@ -8,6 +9,9 @@ interface Genre {
 
 const GenrePopUp: React.FC<{ genre: Genre }> = ({ genre }) => {
   const [name, setName] = useState<string>(genre.name);
+
+  const [books, setBooks] = useState<Book[]>([]);
+  const [showBooks, setShowBooks] = useState<boolean>(false);
 
   let newGenre: Genre = { id: genre.id, name };
 
@@ -51,6 +55,31 @@ const GenrePopUp: React.FC<{ genre: Genre }> = ({ genre }) => {
     }
   };
 
+  const listBooks = async (genre?: Genre) => {
+    try {
+      const response = await fetch("/api/list/booksByGenre", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(genre),
+      });
+      if (response.ok) {
+        if (response.status !== 200) {
+          setBooks([]);
+          return;
+        }
+        const data = await response.json();
+        setBooks(data);
+      }
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Error listing books:", error);
+    }
+  };
+
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
       <div
@@ -73,6 +102,44 @@ const GenrePopUp: React.FC<{ genre: Genre }> = ({ genre }) => {
               onChange={(e) => setName(e.target.value)}
               defaultValue={genre.name}
             />
+          </div>
+          <div>
+            <button
+              type="button"
+              className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-3 rounded"
+              onClick={() => {
+                listBooks(genre);
+                setShowBooks(true);
+              }}
+            >
+              List Books
+            </button>
+            {showBooks && (
+              <div
+                className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50"
+                onClick={() => setShowBooks(false)}
+              >
+                <div
+                  className="bg-white p-6 rounded shadow-md cursor-auto"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <h3 className="text-xl font-semibold">
+                    Books with {genre.name}
+                  </h3>
+                  <ul>
+                    {books.length > 0 ? (
+                      books.map((book: Book) => (
+                        <li key={book.id}>
+                          {book.title} ({book.code})
+                        </li>
+                      ))
+                    ) : (
+                      <li>No books found</li>
+                    )}
+                  </ul>
+                </div>
+              </div>
+            )}
           </div>
           <div className="flex justify-between">
             <button
