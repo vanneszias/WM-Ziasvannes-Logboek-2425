@@ -2,7 +2,6 @@
 
 ## ToDo:
 
-- Delete author and genre with books still linked to them
 - Laat alle boeken door een auteur zien
 - Laat alle boeken met een genre zien
 

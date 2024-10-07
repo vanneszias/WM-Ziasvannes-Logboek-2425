@@ -40,7 +40,12 @@ const GenrePopUp: React.FC<{ genre: Genre }> = ({ genre }) => {
         },
         body: JSON.stringify(genre),
       });
-      console.log(response);
+      if (response.ok) {
+        window.location.reload();
+      }
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
     } catch (error) {
       console.error("Error deleting genre:", error);
     }

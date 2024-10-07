@@ -44,7 +44,12 @@ const AuthorPopUp: React.FC<{ author: Author }> = ({ author }) => {
         },
         body: JSON.stringify(author),
       });
-      console.log(response);
+      if (response.ok) {
+        window.location.reload();
+      }
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
     } catch (error) {
       console.error("Error deleting author:", error);
     }

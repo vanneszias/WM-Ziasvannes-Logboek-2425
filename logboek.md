@@ -34,4 +34,8 @@
 - Added functionality to change and author and genre: 0.5u
 - Added functionality to delete an author and genre: 0.25u
 
-## Totale duur : 27.5 uur
+## Week 3 - 1u
+
+- Fixed an issue where the author and genre would not be properly deleted: 1u
+
+## Totale duur : 28.5 uur
