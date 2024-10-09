@@ -1,6 +1,6 @@
 # WM Opdracht 1
 
-## [Website](wm.ziasserver.com)
+- [Website](www.wm.ziasserver.com)
 
 ## Technieken die ik gebruik
 
