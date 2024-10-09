@@ -1,8 +1,6 @@
 # WM Opdracht 1
 
-## ToDo:
-
-- Testing and bugfixes
+## [Website](wm.ziasserver.com)
 
 ## Technieken die ik gebruik
 
