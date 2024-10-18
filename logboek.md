@@ -39,4 +39,9 @@
 - Fixed an issue where the author and genre would not be properly deleted: 1u
 - Added ability to show all books with a certain author or genre: 1u
 
-## Totale duur : 29.5 uur
+## Week 4 - 8u
+
+- Started learning about app dev with Capacitor and did a test project: 6u
+- Started opdracht 2: 2u
+
+## Totale duur : 37.5 uur

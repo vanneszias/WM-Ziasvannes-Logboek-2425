@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Bibliotheek</string>
+    <string name="title_activity_main">Bibliotheek</string>
+    <string name="package_name">com.ziasserver.bibliotheek</string>
+    <string name="custom_url_scheme">com.ziasserver.bibliotheek</string>
+</resources>
