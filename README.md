@@ -3,3 +3,4 @@
 ## [Logboek](logboek.md)
 
 - [Opdracht 1](opdracht1/)
+- [Opdracht 2](opdracht2/)
