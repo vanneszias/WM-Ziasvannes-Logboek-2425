@@ -11,20 +11,7 @@
           <ion-title size="large">Authors</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-list>
-        <ion-item>
-          <ion-icon :icon="personCircleOutline" slot="start"></ion-icon>
-          <ion-label>Author 1</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-icon :icon="personCircleOutline" slot="start"></ion-icon>
-          <ion-label>Author 2</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-icon :icon="personCircleOutline" slot="start"></ion-icon>
-          <ion-label>Author 1</ion-label>
-        </ion-item>
-      </ion-list>
+      <authors />
     </ion-content>
   </ion-page>
 </template>
@@ -36,10 +23,6 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonIcon,
-  IonList,
-  IonItem,
-  IonLabel,
 } from "@ionic/vue";
-import { personCircleOutline } from "ionicons/icons";
+import authors from "@/components/list/authors.vue";
 </script>

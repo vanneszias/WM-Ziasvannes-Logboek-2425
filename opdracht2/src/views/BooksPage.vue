@@ -11,21 +11,7 @@
           <ion-title size="large">Books</ion-title>
         </ion-toolbar>
       </ion-header>
-
-      <ion-list>
-        <ion-item>
-          <ion-icon :icon="book" slot="start"></ion-icon>
-          <ion-label> Book 1 </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-icon :icon="book" slot="start"></ion-icon>
-          <ion-label>Book 2</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-icon :icon="book" slot="start"></ion-icon>
-          <ion-label>Book 3</ion-label>
-        </ion-item>
-      </ion-list>
+      <books />
     </ion-content>
   </ion-page>
 </template>
@@ -37,10 +23,6 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonIcon,
-  IonList,
-  IonItem,
-  IonLabel,
 } from "@ionic/vue";
-import { book } from "ionicons/icons";
+import books from "@/components/list/books.vue";
 </script>
