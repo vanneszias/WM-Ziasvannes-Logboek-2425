@@ -1,16 +1,44 @@
 <template>
     <ion-list>
-        <ion-item v-for="genre in genres" :key="genre.id">
-            <ion-icon :icon="notifications" slot="start"></ion-icon>
-            <ion-label>{{ genre.name }}</ion-label>
-        </ion-item>
+        <ion-item-sliding v-for="genre in genres" :key="genre.id">
+            <ion-item>
+                <ion-icon :icon="genreIcon" slot="start"></ion-icon>
+                <ion-label>{{ genre.name }}</ion-label>
+            </ion-item>
+            <ion-item-options side="start">
+                <ion-item-option @click="deleteGenre(genre)" color="danger">
+                    <ion-icon :icon="removeCircleOutline"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+            <ion-item-options side="end">
+                <ion-item-option @click="togglePopup(genre)">
+                    <ion-icon :icon="pencilOutline"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
     </ion-list>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
 import axios from "axios";
-import { notifications } from "ionicons/icons";
+import { ref, onMounted } from "vue";
+import { pencilOutline, removeCircleOutline } from "ionicons/icons";
+import genreIcon from "@/components/icons/genre.svg";
+import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption } from '@ionic/vue';
+
+const deleteGenre = async (genre: Genre) => {
+    try {
+        await axios.post("https://wm.ziasserver.com/api/delete/genre", { body: genre.id });
+        genres.value = genres.value.filter((g) => g.id !== genre.id);
+    } catch (error) {
+        console.error("Error deleting genre:", error);
+    }
+};
+
+const togglePopup = (genre: Genre) => {
+    genre.popup = !genre.popup;
+    // Emit an event or handle any additional logic here if needed
+};
 
 interface Book {
     id: number;
@@ -26,10 +54,12 @@ interface Author {
     firstName: string;
     lastName: number;
     birthYear: number;
+    popup?: boolean;
 }
 interface Genre {
     id: number;
     name: string;
+    popup?: boolean;
 }
 
 const genres = ref<Genre[]>([]);

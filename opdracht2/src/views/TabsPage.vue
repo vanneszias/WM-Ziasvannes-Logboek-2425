@@ -14,7 +14,7 @@
         </ion-tab-button>
 
         <ion-tab-button tab="genres" href="/tabs/genres">
-          <ion-icon aria-hidden="true" :icon="square" />
+          <ion-icon aria-hidden="true" :icon="genreIcon" />
           <ion-label>Genres</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
@@ -32,5 +32,6 @@ import {
   IonPage,
   IonRouterOutlet,
 } from "@ionic/vue";
-import { book, peopleCircleOutline, square } from "ionicons/icons";
+import { book, peopleCircleOutline } from "ionicons/icons";
+import genreIcon from "@/components/icons/genres.svg";
 </script>

@@ -1,16 +1,43 @@
 <template>
     <ion-list>
-        <ion-item v-for="author in authors" :key="author.id">
-            <ion-icon :icon="personCircleOutline" slot="start"></ion-icon>
-            <ion-label>{{ author.firstName.at(0) + ". " + author.lastName }}</ion-label>
-        </ion-item>
+        <ion-item-sliding v-for="author in authors" :key="author.id">
+            <ion-item>
+                <ion-icon :icon="personCircleOutline" slot="start"></ion-icon>
+                <ion-label>{{ author.firstName }} {{ author.lastName }}</ion-label>
+            </ion-item>
+            <ion-item-options side="start">
+                <ion-item-option @click="deleteAuthor(author)" color="danger">
+                    <ion-icon :icon="removeCircleOutline"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+            <ion-item-options side="end">
+                <ion-item-option @click="togglePopup(author)">
+                    <ion-icon :icon="pencilOutline"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
     </ion-list>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
 import axios from "axios";
-import { personCircleOutline } from "ionicons/icons";
+import { ref, onMounted } from "vue";
+import { personCircleOutline, pencilOutline, removeCircleOutline } from "ionicons/icons";
+import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption } from '@ionic/vue';
+
+const deleteAuthor = async (author: Author) => {
+    try {
+        await axios.post("https://wm.ziasserver.com/api/delete/author", { body: author.id });
+        authors.value = authors.value.filter((a) => a.id !== author.id);
+    } catch (error) {
+        console.error("Error deleting author:", error);
+    }
+};
+
+const togglePopup = (author: Author) => {
+    author.popup = !author.popup;
+    // Emit an event or handle any additional logic here if needed
+};
 
 interface Book {
     id: number;
@@ -26,10 +53,12 @@ interface Author {
     firstName: string;
     lastName: number;
     birthYear: number;
+    popup?: boolean;
 }
 interface Genre {
     id: number;
     name: string;
+    popup?: boolean;
 }
 
 const authors = ref<Author[]>([]);
