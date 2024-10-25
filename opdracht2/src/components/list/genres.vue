@@ -15,16 +15,20 @@
                     <ion-icon :icon="pencilOutline"></ion-icon>
                 </ion-item-option>
             </ion-item-options>
+            <ion-modal :is-open="genre.popup" @didDismiss="genre.popup = false">
+                <GenreDetails @close="togglePopup(genre)" :genre="genre" />
+            </ion-modal>
         </ion-item-sliding>
     </ion-list>
 </template>
 
-<script setup lang="ts"> 
+<script setup lang="ts">
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { pencilOutline, removeCircleOutline } from "ionicons/icons";
 import genreIcon from "@/components/icons/genre.svg";
-import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption } from '@ionic/vue';
+import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption, IonModal } from '@ionic/vue';
+import GenreDetails from "@/components/details/genre.vue";
 
 const deleteGenre = async (genre: Genre) => {
     try {

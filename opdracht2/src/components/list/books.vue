@@ -15,16 +15,19 @@
                     <ion-icon :icon="pencilOutline"></ion-icon>
                 </ion-item-option>
             </ion-item-options>
+            <ion-modal :is-open="book.popup" @didDismiss="book.popup = false">
+                <BookDetails @close="togglePopup(book)" :book="book" />
+            </ion-modal>
         </ion-item-sliding>
     </ion-list>
 </template>
-
 
 <script setup lang="ts">
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { bookOutline, pencilOutline, removeCircleOutline } from "ionicons/icons";
-import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption } from '@ionic/vue';
+import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption, IonModal } from '@ionic/vue';
+import BookDetails from "@/components/details/book.vue";
 
 const deleteBook = async (book: Book) => {
     try {
@@ -40,26 +43,12 @@ const togglePopup = (book: Book) => {
     // Emit an event or handle any additional logic here if needed
 };
 
-
 interface Book {
     id: number;
     title: string;
     code: string;
     authorId: number;
     genreId: number;
-    popup?: boolean;
-}
-
-interface Author {
-    id: number;
-    firstName: string;
-    lastName: number;
-    birthYear: number;
-    popup?: boolean;
-}
-interface Genre {
-    id: number;
-    name: string;
     popup?: boolean;
 }
 

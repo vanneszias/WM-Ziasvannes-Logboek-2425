@@ -15,6 +15,9 @@
                     <ion-icon :icon="pencilOutline"></ion-icon>
                 </ion-item-option>
             </ion-item-options>
+            <ion-modal :is-open="author.popup" @didDismiss="author.popup = false">
+                <AuthorDetails @close="togglePopup(author)" :author="author" />
+            </ion-modal>
         </ion-item-sliding>
     </ion-list>
 </template>
@@ -23,7 +26,8 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { personCircleOutline, pencilOutline, removeCircleOutline } from "ionicons/icons";
-import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption } from '@ionic/vue';
+import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption, IonModal } from '@ionic/vue';
+import AuthorDetails from "@/components/details/author.vue";
 
 const deleteAuthor = async (author: Author) => {
     try {
@@ -39,25 +43,11 @@ const togglePopup = (author: Author) => {
     // Emit an event or handle any additional logic here if needed
 };
 
-interface Book {
-    id: number;
-    title: string;
-    code: string;
-    authorId: number;
-    genreId: number;
-    popup?: boolean;
-}
-
 interface Author {
     id: number;
     firstName: string;
-    lastName: number;
+    lastName: string;
     birthYear: number;
-    popup?: boolean;
-}
-interface Genre {
-    id: number;
-    name: string;
     popup?: boolean;
 }
 
