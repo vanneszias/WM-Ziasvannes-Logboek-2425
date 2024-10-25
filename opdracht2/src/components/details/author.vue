@@ -14,6 +14,7 @@
 <script setup lang="ts">
 import { ref, defineProps, watch, defineEmits } from "vue";
 import { IonButton, IonInput, IonContent, IonLabel, IonItem, IonList } from "@ionic/vue";
+import axios from "axios";
 
 // Define props
 const props = defineProps<{
@@ -41,8 +42,17 @@ const fields: { label: string, model: keyof Author }[] = [
 ];
 
 // Save author function
-const saveAuthor = () => {
-    console.log("Saving author", selectedAuthor.value);
+const saveAuthor = async () => {
+    await axios.post("https://wm.ziasserver.com/api/edit/author", {
+        id: selectedAuthor.value.id,
+        firstName: selectedAuthor.value.firstName,
+        lastName: selectedAuthor.value.lastName,
+        birthYear: selectedAuthor.value.birthYear
+    },
+        { headers: { 'Content-Type': 'application/json' } }
+    );
+    // TODO reload authors
+    emit('close'); // Emit close event to parent component
 };
 
 // Close modal function

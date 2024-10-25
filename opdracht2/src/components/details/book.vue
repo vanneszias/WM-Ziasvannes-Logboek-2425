@@ -14,6 +14,7 @@
 <script setup lang="ts">
 import { ref, defineProps, watch, defineEmits } from "vue";
 import { IonButton, IonInput, IonContent, IonLabel, IonItem, IonList } from "@ionic/vue";
+import axios from "axios";
 
 // Define props
 const props = defineProps<{
@@ -27,6 +28,7 @@ const emit = defineEmits<{
 
 // Initialize selectedBook
 const selectedBook = ref<Book>({
+    id: 0,
     title: '',
     code: '',
     authorId: 0,
@@ -42,8 +44,18 @@ const fields: { label: string, model: keyof Book }[] = [
 ];
 
 // Save book function
-const saveBook = () => {
-    console.log("Saving book", selectedBook.value);
+const saveBook = async () => {
+    await axios.post("https://wm.ziasserver.com/api/edit/book", {
+        id: selectedBook.value.id,
+        title: selectedBook.value.title,
+        code: selectedBook.value.code,
+        authorId: selectedBook.value.authorId,
+        genreId: selectedBook.value.genreId
+    },
+        { headers: { 'Content-Type': 'application/json' } }
+    );
+    // TODO reload books
+    emit('close'); // Emit close event to parent component
 };
 
 // Close modal function
@@ -58,6 +70,7 @@ watch(() => props.book, (newBook) => {
 
 // Define Book interface
 interface Book {
+    id: number;
     title: string;
     code: string;
     authorId: number;

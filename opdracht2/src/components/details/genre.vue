@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import { ref, defineProps, watch, defineEmits } from "vue";
 import { IonButton, IonInput, IonContent, IonLabel, IonItem, IonList } from "@ionic/vue";
+import axios from "axios";
 
 // Define props
 const props = defineProps<{
@@ -38,8 +39,15 @@ const fields: { label: string, model: keyof Genre }[] = [
 ];
 
 // Save genre function
-const saveGenre = () => {
-    console.log("Saving genre", selectedGenre.value);
+const saveGenre = async () => {
+    await axios.post("https://wm.ziasserver.com/api/edit/genre", {
+        id: selectedGenre.value.id,
+        name: selectedGenre.value.name
+    },
+        { headers: { 'Content-Type': 'application/json' } }
+    );
+    // TODO reload genres
+    emit('close'); // Emit close event to parent component
 };
 
 // Close modal function
