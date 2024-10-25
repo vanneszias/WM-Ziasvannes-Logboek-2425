@@ -31,7 +31,10 @@ import BookDetails from "@/components/details/book.vue";
 
 const deleteBook = async (book: Book) => {
     try {
-        await axios.post("https://wm.ziasserver.com/api/delete/book", { body: book.id });
+        await axios.post("https://wm.ziasserver.com/api/delete/book", book.id,
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+
         books.value = books.value.filter((b) => b.id !== book.id);
     } catch (error) {
         console.error("Error deleting book:", error);

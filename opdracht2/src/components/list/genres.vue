@@ -32,7 +32,12 @@ import GenreDetails from "@/components/details/genre.vue";
 
 const deleteGenre = async (genre: Genre) => {
     try {
-        await axios.post("https://wm.ziasserver.com/api/delete/genre", { body: genre.id });
+        await axios.post("https://wm.ziasserver.com/api/delete/genre", {
+            id: genre.id
+        },
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+
         genres.value = genres.value.filter((g) => g.id !== genre.id);
     } catch (error) {
         console.error("Error deleting genre:", error);

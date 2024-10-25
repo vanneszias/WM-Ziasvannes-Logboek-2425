@@ -31,7 +31,12 @@ import AuthorDetails from "@/components/details/author.vue";
 
 const deleteAuthor = async (author: Author) => {
     try {
-        await axios.post("https://wm.ziasserver.com/api/delete/author", { body: author.id });
+        await axios.post("https://wm.ziasserver.com/api/delete/author", {
+            id: author.id
+        },
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+
         authors.value = authors.value.filter((a) => a.id !== author.id);
     } catch (error) {
         console.error("Error deleting author:", error);

@@ -44,4 +44,10 @@
 - Started learning about app dev with Capacitor and did a test project: 6u
 - Started opdracht 2: 2u
 
-## Totale duur : 37.5 uur
+## Week 5 - 9u
+
+- Started creating list of books with Capacitor: 2u
+- Issues with CORS on server side - debugging + fixing: 6u
+- Added ability to remove books, authors, genres: 1u
+
+## Totale duur: 46.5 hours
