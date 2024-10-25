@@ -15,7 +15,7 @@
                     <ion-icon :icon="pencilOutline"></ion-icon>
                 </ion-item-option>
             </ion-item-options>
-            <ion-modal :is-open="genre.popup" @didDismiss="genre.popup = false">
+            <ion-modal class="ion-margin-top" :is-open="genre.popup" @didDismiss="genre.popup = false">
                 <GenreDetails @close="togglePopup(genre)" :genre="genre" />
             </ion-modal>
         </ion-item-sliding>

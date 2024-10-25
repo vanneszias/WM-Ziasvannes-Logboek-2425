@@ -15,7 +15,7 @@
                     <ion-icon :icon="pencilOutline"></ion-icon>
                 </ion-item-option>
             </ion-item-options>
-            <ion-modal :is-open="book.popup" @didDismiss="book.popup = false">
+            <ion-modal class="ion-margin-top" :is-open="book.popup" @didDismiss="book.popup = false">
                 <BookDetails @close="togglePopup(book)" :book="book" />
             </ion-modal>
         </ion-item-sliding>

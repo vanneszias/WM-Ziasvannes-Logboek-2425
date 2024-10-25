@@ -1,15 +1,15 @@
 <template>
     <ion-content class="ion-padding">
-        <ion-list>
-            <ion-item v-for="(field, index) in fields" :key="index">
-                <ion-label position="stacked">{{ field.label }}</ion-label>
-                <ion-input v-model="selectedBook[field.model]"></ion-input>
-            </ion-item>
-        </ion-list>
+        <ion-item v-for=" (field, index) in fields" :key="index">
+            <ion-label position="stacked">{{ field.label }}</ion-label>
+            <ion-input v-model="selectedBook[field.model]"></ion-input>
+        </ion-item>
         <ion-button @click="saveBook">Save</ion-button>
         <ion-button @click="closeModal">Close</ion-button>
     </ion-content>
 </template>
+
+<style></style>
 
 <script setup lang="ts">
 import { ref, defineProps, watch, defineEmits } from "vue";
