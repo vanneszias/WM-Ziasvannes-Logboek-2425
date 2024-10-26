@@ -40,13 +40,22 @@ const fields: { label: string, model: keyof Genre }[] = [
 
 // Save genre function
 const saveGenre = async () => {
-    await axios.post("https://wm.ziasserver.com/api/edit/genre", {
-        id: selectedGenre.value.id,
-        name: selectedGenre.value.name
-    },
-        { headers: { 'Content-Type': 'application/json' } }
-    );
-    // TODO reload genres
+    if (selectedGenre.value.id === 0) {
+        // Add new genre
+        await axios.post("https://wm.ziasserver.com/api/create/genre", {
+            name: selectedGenre.value.name
+        },
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+    } else {
+        // Edit existing genre
+        await axios.post("https://wm.ziasserver.com/api/edit/genre", {
+            id: selectedGenre.value.id,
+            name: selectedGenre.value.name
+        },
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+    }
     emit('close'); // Emit close event to parent component
 };
 

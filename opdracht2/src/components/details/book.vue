@@ -9,8 +9,6 @@
     </ion-content>
 </template>
 
-<style></style>
-
 <script setup lang="ts">
 import { ref, defineProps, watch, defineEmits } from "vue";
 import { IonButton, IonInput, IonContent, IonLabel, IonItem } from "@ionic/vue";
@@ -45,16 +43,28 @@ const fields: { label: string, model: keyof Book }[] = [
 
 // Save book function
 const saveBook = async () => {
-    await axios.post("https://wm.ziasserver.com/api/edit/book", {
-        id: selectedBook.value.id,
-        title: selectedBook.value.title,
-        code: selectedBook.value.code,
-        authorId: selectedBook.value.authorId,
-        genreId: selectedBook.value.genreId
-    },
-        { headers: { 'Content-Type': 'application/json' } }
-    );
-    // TODO reload books
+    if (selectedBook.value.id === 0) {
+        // Add new book
+        await axios.post("https://wm.ziasserver.com/api/create/book", {
+            title: selectedBook.value.title,
+            code: selectedBook.value.code,
+            author: selectedBook.value.authorId,
+            genre: selectedBook.value.genreId
+        },
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+    } else {
+        // Edit existing book
+        await axios.post("https://wm.ziasserver.com/api/edit/book", {
+            id: selectedBook.value.id,
+            title: selectedBook.value.title,
+            code: selectedBook.value.code,
+            authorId: selectedBook.value.authorId,
+            genreId: selectedBook.value.genreId
+        },
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+    }
     emit('close'); // Emit close event to parent component
 };
 

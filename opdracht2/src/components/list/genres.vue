@@ -20,14 +20,23 @@
             </ion-modal>
         </ion-item-sliding>
     </ion-list>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="start">
+        <ion-fab-button @click="showAddGenreModal = true">
+            <ion-icon :icon="addOutline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-modal :is-open="showAddGenreModal" @didDismiss="showAddGenreModal = false">
+        <GenreDetails @close="showAddGenreModal = false, togglePopup({ id: 0, name: '', popup: true })"
+            :genre="{ id: 0, name: '' }" />
+    </ion-modal>
 </template>
 
 <script setup lang="ts">
 import axios from "axios";
 import { ref, onMounted } from "vue";
-import { pencilOutline, removeCircleOutline } from "ionicons/icons";
+import { pencilOutline, removeCircleOutline, addOutline } from "ionicons/icons";
 import genreIcon from "@/components/icons/genre.svg";
-import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption, IonModal } from '@ionic/vue';
+import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption, IonModal, IonFab, IonFabButton } from '@ionic/vue';
 import GenreDetails from "@/components/details/genre.vue";
 
 const deleteGenre = async (genre: Genre) => {
@@ -74,6 +83,7 @@ interface Genre {
 }
 
 const genres = ref<Genre[]>([]);
+const showAddGenreModal = ref(false);
 
 const fetchGenres = async () => {
     try {

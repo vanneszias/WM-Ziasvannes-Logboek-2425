@@ -20,13 +20,23 @@
             </ion-modal>
         </ion-item-sliding>
     </ion-list>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="start">
+        <ion-fab-button @click="showAddAuthorModal = true">
+            <ion-icon :icon="addOutline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-modal :is-open="showAddAuthorModal" @didDismiss="showAddAuthorModal = false">
+        <AuthorDetails
+            @close="showAddAuthorModal = false, togglePopup({ id: 0, firstName: '', lastName: '', birthYear: 0, popup: true })"
+            :author="{ id: 0, firstName: '', lastName: '', birthYear: 0 }" />
+    </ion-modal>
 </template>
 
 <script setup lang="ts">
 import axios from "axios";
 import { ref, onMounted } from "vue";
-import { personCircleOutline, pencilOutline, removeCircleOutline } from "ionicons/icons";
-import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption, IonModal } from '@ionic/vue';
+import { personCircleOutline, pencilOutline, removeCircleOutline, addOutline } from "ionicons/icons";
+import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption, IonModal, IonFab, IonFabButton } from '@ionic/vue';
 import AuthorDetails from "@/components/details/author.vue";
 
 const deleteAuthor = async (author: Author) => {
@@ -59,6 +69,7 @@ interface Author {
 }
 
 const authors = ref<Author[]>([]);
+const showAddAuthorModal = ref(false);
 
 const fetchAuthors = async () => {
     try {

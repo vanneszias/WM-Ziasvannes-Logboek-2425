@@ -20,14 +20,25 @@
             </ion-modal>
         </ion-item-sliding>
     </ion-list>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="start">
+        <ion-fab-button @click="showAddBookModal = true">
+            <ion-icon :icon="addOutline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-modal :is-open="showAddBookModal" @didDismiss="showAddBookModal = false">
+        <BookDetails
+            @close="showAddBookModal = false, togglePopup({ id: 0, title: '', code: '', authorId: 0, genreId: 0, popup: true })"
+            :book="{ id: 0, title: '', code: '', authorId: 0, genreId: 0 }" />
+    </ion-modal>
 </template>
 
 <script setup lang="ts">
 import axios from "axios";
-import { ref, onMounted } from "vue";
-import { bookOutline, pencilOutline, removeCircleOutline } from "ionicons/icons";
-import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption, IonModal } from '@ionic/vue';
+import { ref, onMounted, popScopeId } from "vue";
+import { bookOutline, pencilOutline, removeCircleOutline, addOutline, book } from "ionicons/icons";
+import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption, IonModal, IonFab, IonFabButton } from '@ionic/vue';
 import BookDetails from "@/components/details/book.vue";
+import Book from "@/components/details/book.vue";
 
 const deleteBook = async (book: Book) => {
     try {
@@ -58,6 +69,7 @@ interface Book {
 }
 
 const books = ref<Book[]>([]);
+const showAddBookModal = ref(false);
 
 const fetchBooks = async () => {
     try {

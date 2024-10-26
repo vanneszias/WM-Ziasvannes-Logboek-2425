@@ -43,16 +43,27 @@ const fields: { label: string, model: keyof Author }[] = [
 
 // Save author function
 const saveAuthor = async () => {
-    await axios.post("https://wm.ziasserver.com/api/edit/author", {
-        id: selectedAuthor.value.id,
-        firstName: selectedAuthor.value.firstName,
-        lastName: selectedAuthor.value.lastName,
-        birthYear: selectedAuthor.value.birthYear
-    },
-        { headers: { 'Content-Type': 'application/json' } }
-    );
-    // TODO reload authors
-    emit('close'); // Emit close event to parent component
+    if (selectedAuthor.value.id === 0) {
+        // Add new author
+        await axios.post("https://wm.ziasserver.com/api/create/author", {
+            firstName: selectedAuthor.value.firstName,
+            lastName: selectedAuthor.value.lastName,
+            birthYear: selectedAuthor.value.birthYear
+        },
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+    } else {
+        // Edit existing author
+        await axios.post("https://wm.ziasserver.com/api/edit/author", {
+            id: selectedAuthor.value.id,
+            firstName: selectedAuthor.value.firstName,
+            lastName: selectedAuthor.value.lastName,
+            birthYear: selectedAuthor.value.birthYear
+        },
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+        emit('close'); // Emit close event to parent component
+    };
 };
 
 // Close modal function
