@@ -46,7 +46,9 @@ const deleteGenre = async (genre: Genre) => {
 
 const togglePopup = (genre: Genre) => {
     genre.popup = !genre.popup;
-    // Emit an event or handle any additional logic here if needed
+    if (!genre.popup) {
+        fetchGenres();
+    }
 };
 
 interface Book {

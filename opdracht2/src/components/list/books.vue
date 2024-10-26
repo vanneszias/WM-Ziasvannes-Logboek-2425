@@ -43,7 +43,9 @@ const deleteBook = async (book: Book) => {
 
 const togglePopup = (book: Book) => {
     book.popup = !book.popup;
-    // Emit an event or handle any additional logic here if needed
+    if (!book.popup) {
+        fetchBooks();
+    }
 };
 
 interface Book {

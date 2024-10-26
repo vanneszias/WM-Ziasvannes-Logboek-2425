@@ -45,7 +45,9 @@ const deleteAuthor = async (author: Author) => {
 
 const togglePopup = (author: Author) => {
     author.popup = !author.popup;
-    // Emit an event or handle any additional logic here if needed
+    if (!author.popup) {
+        fetchAuthors();
+    }
 };
 
 interface Author {

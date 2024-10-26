@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { ref, defineProps, watch, defineEmits } from "vue";
-import { IonButton, IonInput, IonContent, IonLabel, IonItem, IonList } from "@ionic/vue";
+import { IonButton, IonInput, IonContent, IonLabel, IonItem } from "@ionic/vue";
 import axios from "axios";
 
 // Define props
