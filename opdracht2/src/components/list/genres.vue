@@ -20,6 +20,7 @@
             </ion-modal>
         </ion-item-sliding>
     </ion-list>
+
     <ion-fab slot="fixed" vertical="bottom" horizontal="start">
         <ion-fab-button @click="showAddGenreModal = true">
             <ion-icon :icon="addOutline"></ion-icon>
@@ -32,6 +33,7 @@
 </template>
 
 <script setup lang="ts">
+// Import necessary modules and components
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { pencilOutline, removeCircleOutline, addOutline } from "ionicons/icons";
@@ -39,6 +41,16 @@ import genreIcon from "@/components/icons/genre.svg";
 import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption, IonModal, IonFab, IonFabButton } from '@ionic/vue';
 import GenreDetails from "@/components/details/genre.vue";
 
+interface Genre {
+    id: number;
+    name: string;
+    popup?: boolean;
+}
+
+const genres = ref<Genre[]>([]);
+const showAddGenreModal = ref(false);
+
+// Delete genre function
 const deleteGenre = async (genre: Genre) => {
     try {
         await axios.post("https://wm.ziasserver.com/api/delete/genre", {
@@ -53,37 +65,13 @@ const deleteGenre = async (genre: Genre) => {
     }
 };
 
+// Toggle popup function and fetch genres when closing popup
 const togglePopup = (genre: Genre) => {
     genre.popup = !genre.popup;
     if (!genre.popup) {
         fetchGenres();
     }
 };
-
-interface Book {
-    id: number;
-    title: string;
-    code: string;
-    authorId: number;
-    genreId: number;
-    popup?: boolean;
-}
-
-interface Author {
-    id: number;
-    firstName: string;
-    lastName: number;
-    birthYear: number;
-    popup?: boolean;
-}
-interface Genre {
-    id: number;
-    name: string;
-    popup?: boolean;
-}
-
-const genres = ref<Genre[]>([]);
-const showAddGenreModal = ref(false);
 
 const fetchGenres = async () => {
     try {
@@ -96,6 +84,7 @@ const fetchGenres = async () => {
     }
 };
 
+// Fetch genres on component mount
 onMounted(() => {
     fetchGenres();
 });

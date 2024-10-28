@@ -20,6 +20,7 @@
             </ion-modal>
         </ion-item-sliding>
     </ion-list>
+
     <ion-fab slot="fixed" vertical="bottom" horizontal="start">
         <ion-fab-button @click="showAddBookModal = true">
             <ion-icon :icon="addOutline"></ion-icon>
@@ -33,31 +34,13 @@
 </template>
 
 <script setup lang="ts">
+// Import necessary modules and components
 import axios from "axios";
 import { ref, onMounted, popScopeId } from "vue";
-import { bookOutline, pencilOutline, removeCircleOutline, addOutline, book } from "ionicons/icons";
+import { bookOutline, pencilOutline, removeCircleOutline, addOutline } from "ionicons/icons";
 import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption, IonModal, IonFab, IonFabButton } from '@ionic/vue';
 import BookDetails from "@/components/details/book.vue";
 import Book from "@/components/details/book.vue";
-
-const deleteBook = async (book: Book) => {
-    try {
-        await axios.post("https://wm.ziasserver.com/api/delete/book", book.id,
-            { headers: { 'Content-Type': 'application/json' } }
-        );
-
-        books.value = books.value.filter((b) => b.id !== book.id);
-    } catch (error) {
-        console.error("Error deleting book:", error);
-    }
-};
-
-const togglePopup = (book: Book) => {
-    book.popup = !book.popup;
-    if (!book.popup) {
-        fetchBooks();
-    }
-};
 
 interface Book {
     id: number;
@@ -71,6 +54,26 @@ interface Book {
 const books = ref<Book[]>([]);
 const showAddBookModal = ref(false);
 
+// Delete book function
+const deleteBook = async (book: Book) => {
+    try {
+        await axios.post("https://wm.ziasserver.com/api/delete/book", book.id,
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+
+        books.value = books.value.filter((b) => b.id !== book.id);
+    } catch (error) {
+        console.error("Error deleting book:", error);
+    }
+};
+// Toggle popup function and fetch books when closing popup
+const togglePopup = (book: Book) => {
+    book.popup = !book.popup;
+    if (!book.popup) {
+        fetchBooks();
+    }
+};
+
 const fetchBooks = async () => {
     try {
         const response = await axios.get(
@@ -82,6 +85,7 @@ const fetchBooks = async () => {
     }
 };
 
+// Fetch books on component mounted
 onMounted(() => {
     fetchBooks();
 });

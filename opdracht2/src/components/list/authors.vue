@@ -20,6 +20,7 @@
             </ion-modal>
         </ion-item-sliding>
     </ion-list>
+
     <ion-fab slot="fixed" vertical="bottom" horizontal="start">
         <ion-fab-button @click="showAddAuthorModal = true">
             <ion-icon :icon="addOutline"></ion-icon>
@@ -33,12 +34,25 @@
 </template>
 
 <script setup lang="ts">
+// Import necessary modules and components
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { personCircleOutline, pencilOutline, removeCircleOutline, addOutline } from "ionicons/icons";
 import { IonList, IonItemSliding, IonItem, IonIcon, IonLabel, IonItemOptions, IonItemOption, IonModal, IonFab, IonFabButton } from '@ionic/vue';
 import AuthorDetails from "@/components/details/author.vue";
 
+interface Author {
+    id: number;
+    firstName: string;
+    lastName: string;
+    birthYear: number;
+    popup?: boolean;
+}
+
+const authors = ref<Author[]>([]);
+const showAddAuthorModal = ref(false);
+
+// Delete author function
 const deleteAuthor = async (author: Author) => {
     try {
         await axios.post("https://wm.ziasserver.com/api/delete/author", {
@@ -53,23 +67,13 @@ const deleteAuthor = async (author: Author) => {
     }
 };
 
+// Toggle author popup function and fetch authors when closing popup
 const togglePopup = (author: Author) => {
     author.popup = !author.popup;
     if (!author.popup) {
         fetchAuthors();
     }
 };
-
-interface Author {
-    id: number;
-    firstName: string;
-    lastName: string;
-    birthYear: number;
-    popup?: boolean;
-}
-
-const authors = ref<Author[]>([]);
-const showAddAuthorModal = ref(false);
 
 const fetchAuthors = async () => {
     try {
@@ -82,6 +86,7 @@ const fetchAuthors = async () => {
     }
 };
 
+// Fetch authors on component mount
 onMounted(() => {
     fetchAuthors();
 });

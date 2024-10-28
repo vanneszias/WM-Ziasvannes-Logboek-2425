@@ -48,22 +48,22 @@ const saveAuthor = async () => {
         await axios.post("https://wm.ziasserver.com/api/create/author", {
             firstName: selectedAuthor.value.firstName,
             lastName: selectedAuthor.value.lastName,
-            birthYear: selectedAuthor.value.birthYear
+            birthYear: Number(selectedAuthor.value.birthYear)
         },
             { headers: { 'Content-Type': 'application/json' } }
         );
     } else {
         // Edit existing author
         await axios.post("https://wm.ziasserver.com/api/edit/author", {
-            id: selectedAuthor.value.id,
+            id: Number(selectedAuthor.value.id),
             firstName: selectedAuthor.value.firstName,
             lastName: selectedAuthor.value.lastName,
-            birthYear: selectedAuthor.value.birthYear
+            birthYear: Number(selectedAuthor.value.birthYear)
         },
             { headers: { 'Content-Type': 'application/json' } }
         );
-        emit('close'); // Emit close event to parent component
     };
+    emit('close'); // Emit close event to parent component
 };
 
 // Close modal function
