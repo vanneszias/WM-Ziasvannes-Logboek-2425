@@ -44,7 +44,7 @@
 - Started learning about app dev with Capacitor and did a test project: 6u
 - Started opdracht 2: 2u
 
-## Week 5 - 12.5u
+## Week 5 - 13.5u
 
 - Started creating list of books with Capacitor: 2u
 - Issues with CORS on server side - debugging + fixing: 6u
@@ -52,5 +52,6 @@
 - Added ability to add books, authors, genres: 1u
 - When adding / editting books show a list of authors and genres: 2u
 - Fixed issue with numbers format when using API: 0.5u
+- Added about page and demo: 1u
 
-## Totale duur: 50 hours
+## Totale duur: 51u

@@ -17,6 +17,11 @@
           <ion-icon aria-hidden="true" :icon="genreIcon" />
           <ion-label>Genres</ion-label>
         </ion-tab-button>
+
+        <ion-tab-button tab="about" href="/tabs/about">
+          <ion-icon aria-hidden="true" :icon="personCircleOutline" />
+          <ion-label>About</ion-label>
+        </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
@@ -32,6 +37,6 @@ import {
   IonPage,
   IonRouterOutlet,
 } from "@ionic/vue";
-import { book, peopleCircleOutline } from "ionicons/icons";
+import { book, peopleCircleOutline, personCircleOutline } from "ionicons/icons";
 import genreIcon from "@/components/icons/genres.svg";
 </script>
