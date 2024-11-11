@@ -54,4 +54,14 @@
 - Fixed issue with numbers format when using API: 0.5u
 - Added about page and demo: 1u
 
-## Totale duur: 51u
+## Opdracht 3:
+
+- Started with thinking about the project and making a simple sketch: 2u
+- Created a new repository and started the project: 2u
+- Added a static map with a marker: 2u
+- Implemented a static map with current location: 1u
+- Implemented a dynamic map with current location so it updates and tracks location changes: 2u
+
+**Totaal opdracht 3: 9u**
+
+## Totale duur: 60u
