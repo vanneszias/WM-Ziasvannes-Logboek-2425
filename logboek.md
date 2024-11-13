@@ -61,7 +61,11 @@
 - Added a static map with a marker: 2u
 - Implemented a static map with current location: 1u
 - Implemented a dynamic map with current location so it updates and tracks location changes: 2u
+- Start developing a server for the project: 2u
+- Use docker container and docker-compose for the server: 2u
+- Research for hosting the server. Decided to still use localhost for now: 1u
+- Send active location data via websocket to the server: 1u
 
-**Totaal opdracht 3: 9u**
+**Totaal opdracht 3: 15u**
 
-## Totale duur: 60u
+## Totale duur: 66u
