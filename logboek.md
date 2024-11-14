@@ -65,7 +65,9 @@
 - Use docker container and docker-compose for the server: 2u
 - Research for hosting the server. Decided to still use localhost for now: 1u
 - Send active location data via websocket to the server: 1u
+- Added a map to client to watch the location another user: 1u
+- Broadcast location data to all clients from server: 1u
 
-**Totaal opdracht 3: 15u**
+**Totaal opdracht 3: 17u**
 
-## Totale duur: 66u
+## Totale duur: 68u
